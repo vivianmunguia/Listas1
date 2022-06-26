@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace Listas1
@@ -24,6 +25,15 @@ namespace Listas1
             miListView.ItemsSource = from nombre in nombres
                                      where nombre.StartsWith("H")
                                      select nombre;
+            miListView.ItemSelected += (sender, e) =>
+            {
+                if (e.SelectedItem != null)
+                {
+                    Debug.WriteLine("Selected: " + e.SelectedItem);
+                    miListView.SelectedItem = null;
+                }
+            };
+
             Content = miListView;
         }
     }
